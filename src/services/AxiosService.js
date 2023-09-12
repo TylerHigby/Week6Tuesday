@@ -1,7 +1,17 @@
 import Axios from 'axios'
 import { baseURL } from '../env'
 import { logger } from '../utils/Logger.js'
+import axios from "axios"
 
+
+export const giftApi = axios.create({
+  baseURL: 'https://sandbox.codeworksacademy.com/'
+
+})
+
+export const giphyApi = axios.create({
+  baseURL: 'http://api.giphy.com/v1/gifs'
+})
 export const api = Axios.create({
   baseURL,
   timeout: 8000
@@ -18,9 +28,9 @@ function handleAxiosError(error) {
   } else if (error.request) {
     // The request was made but no response was received
     logger.warn('[📡 AXIOS_ERROR_NO_RESPONSE]', error.request)
-  }else {
+  } else {
     // Something happened in setting up the request that triggered an Error
-    logger.warn('[📡 AXIOS_ERROR_INVALID_REQUEST]',error.message)
+    logger.warn('[📡 AXIOS_ERROR_INVALID_REQUEST]', error.message)
   }
   return Promise.reject(error)
 }
